@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BC751C67-DDDD-4632-93B6-B4693BDE9770}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OxLib</RootNamespace>
+    <AssemblyName>OxLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v16.1.Core, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v16.1, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v16.1, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v16.1.Wizard, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v16.1, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v16.1.UI, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v16.1, Version=16.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=4.5.2.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\FirebirdClient\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TwinCAT.Ads, Version=4.1.22.0, Culture=neutral, PublicKeyToken=180016cd49e5e8c3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\TwinCAT ADS\TwinCAT.Ads.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Chart\OxLineChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Controls\OxFormEng.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Controls\OxFormEng.Designer.cs">
+      <DependentUpon>OxFormEng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Controls\OxFormKor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Controls\OxFormKor.Designer.cs">
+      <DependentUpon>OxFormKor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Controls\OxLed.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Controls\OxLed.Designer.cs">
+      <DependentUpon>OxLed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Controls\OxMenu.cs" />
+    <Compile Include="Source\Controls\OxPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Controls\OxPanel.Designer.cs">
+      <DependentUpon>OxPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Controls\OxUserControlEng.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\Controls\OxUserControlEng.Designer.cs">
+      <DependentUpon>OxUserControlEng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Controls\OxUserControlKor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\Controls\OxUserControlKor.Designer.cs">
+      <DependentUpon>OxUserControlKor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Database\OxFirebird.cs" />
+    <Compile Include="Source\Device\Melsec\OxMelsecQ.cs" />
+    <Compile Include="Source\Device\TwinCAT\TcComm.cs" />
+    <Compile Include="Source\Device\TwinCAT\TcCommand.cs" />
+    <Compile Include="Source\DllImport\OxDllImport.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Threading\OxThread.cs" />
+    <Compile Include="Source\Utils\OxBinary.cs" />
+    <Compile Include="Source\Utils\OxLogger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Controls\OxFormEng.resx">
+      <DependentUpon>OxFormEng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Controls\OxFormKor.resx">
+      <DependentUpon>OxFormKor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Controls\OxUserControlEng.resx">
+      <DependentUpon>OxUserControlEng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Controls\OxUserControlKor.resx">
+      <DependentUpon>OxUserControlKor.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\OxLed.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\OxPanel.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
