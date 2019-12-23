@@ -412,6 +412,7 @@ namespace Ulee.Threading
             }
         }
 
+        //----------------------------------------------------------------------
         protected UlPlcSlaveThread(bool start = false, bool terminateException = true)
             : base(start, terminateException)
         {
