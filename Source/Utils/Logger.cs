@@ -168,23 +168,30 @@ namespace Ulee.Utils
             {
 				StreamWriter theStream = null;
 
-				try
-				{
-					theStream = new StreamWriter(GetFName(), true, fEncoding);
+                try
+                {
+                    string head = aHead.Trim().ToUpper();
 
-					if (aHead.Trim() == "")
-					{
-						sStr = string.Format("{0} {1}",
-							DateTime.Now.ToString("HH:mm:ss.fff"), aStr).Trim();
-					}
-					else
-					{
-						sStr = string.Format("{0} [{1}] {2}",
-							DateTime.Now.ToString("HH:mm:ss.fff"), aHead, aStr).Trim();
-					}
+                    theStream = new StreamWriter(GetFName(), true, fEncoding);
+
+                    switch (head)
+                    {
+                        case "":
+                            sStr = string.Format("{0} {1}",
+                                DateTime.Now.ToString("HH:mm:ss.fff"), aStr).Trim();
+                            break;
+
+                        case "TIMELESS":
+                            sStr = aStr;
+                            break;
+
+                        default:
+                            sStr = string.Format("{0} [{1}] {2}",
+                                DateTime.Now.ToString("HH:mm:ss.fff"), aHead, aStr).Trim();
+                            break;
+                    }
 
 					theStream.WriteLine(sStr);
-
                     OnLoggerMessage(sStr + "\r\n");
                 }
                 catch
