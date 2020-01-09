@@ -68,7 +68,7 @@ namespace Ulee.Utils
             LoggerMessage?.Invoke(str);
         }
 
-        public string this[int index]
+        public string this[int index=0]
         {
             get { return null; }
             set { Log(index, value); }
@@ -192,7 +192,7 @@ namespace Ulee.Utils
                     }
 
 					theStream.WriteLine(sStr);
-                    OnLoggerMessage(sStr + "\r\n");
+                    OnLoggerMessage(sStr);
                 }
                 catch
 				{
