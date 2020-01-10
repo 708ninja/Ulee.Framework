@@ -68,16 +68,14 @@ namespace Ulee.Utils
             LoggerMessage?.Invoke(str);
         }
 
-        public string this[int index=0]
+        public string this[int index]
         {
-            get { return null; }
             set { Log(index, value); }
         }
 
-        public string this[string index]
+        public string this[string head]
         {
-            get { return null; }
-            set { Log(index, value); }
+            set { Log(head, value); }
         }
 
         //----------------------------------------------------------------------
@@ -127,6 +125,12 @@ namespace Ulee.Utils
         }
 
         //----------------------------------------------------------------------
+        public void LogRawString(string aStr)
+        {
+            Log("", aStr);
+        }
+
+        //----------------------------------------------------------------------
         public void Log(string fmt, params object[] args)
         {
             string sStr = string.Format(fmt, args);
@@ -143,7 +147,7 @@ namespace Ulee.Utils
         //----------------------------------------------------------------------
         public void Log(string aStr)
         {
-            Log("", aStr);
+            Log(0, aStr);
         }
 
         //----------------------------------------------------------------------

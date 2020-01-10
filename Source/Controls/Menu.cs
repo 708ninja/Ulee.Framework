@@ -56,7 +56,7 @@ namespace Ulee.Controls
             flatButtonColor = AColor;
         }
 
-		//----------------------------------------------------------------------
+        //----------------------------------------------------------------------
         public void Close()
         {
             foreach (UserControl C in panel.Controls)
@@ -64,6 +64,12 @@ namespace Ulee.Controls
                 C.Dispose();
             }
         }
+
+        public Control this[int index]
+        { get { return Controls(index); } }
+
+        public int Count
+        { get { return ControlsCount; } }
 
         //----------------------------------------------------------------------
         public bool Enabled
