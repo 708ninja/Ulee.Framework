@@ -23,7 +23,7 @@ namespace Ulee.Controls
 		Circle
 	}
 
-	[ToolboxBitmap(@"D:\ShDoc\Projects\VS\Ulee\Framework\Ver 1.1.1.x\Resources\UlLed.bmp")]
+	[ToolboxBitmap(@"D:\ShDoc\Projects\VS\Ulee\Framework\Resources\UlLed.bmp")]
 	//--------------------------------------------------------------------------
 	public partial class UlLed : UlPanel
 	{

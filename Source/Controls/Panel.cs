@@ -41,7 +41,7 @@ namespace Ulee.Controls
 		Bottom
 	}
 
-    [ToolboxBitmap(@"D:\ShDoc\Projects\VS\Ulee\Framework\Ver 1.1.1.x\Resources\UlPanel.bmp")]
+    [ToolboxBitmap(@"D:\ShDoc\Projects\VS\Ulee\Framework\Resources\UlPanel.bmp")]
     //--------------------------------------------------------------------------
     public partial class UlPanel : Panel
 	{
