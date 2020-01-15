@@ -169,12 +169,14 @@ namespace Ulee.Device.Connection
             logger.Active = true;
             logger.Path = "";
             logger.FName = "EthernetClientLog";
-            logger.AddHead("CONNECT");
-            logger.AddHead("DISCONNECT");
-            logger.AddHead("PC->Device");
-            logger.AddHead("PC<-Device");
-            logger.AddHead("NOTE");
-            logger.AddHead("EXCEPTION");
+
+            logger.Clear();
+            logger.AddTag("CONNECT");
+            logger.AddTag("DISCONNECT");
+            logger.AddTag("PC->Device");
+            logger.AddTag("PC<-Device");
+            logger.AddTag("NOTE");
+            logger.AddTag("EXCEPTION");
         }
 
         ~UlEthernetClient()

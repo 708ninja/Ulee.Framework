@@ -16,6 +16,10 @@ using System.Text;
 //------------------------------------------------------------------------------
 namespace Ulee.Utils
 {
+    public enum ELogTime { None, Second, Millisecond }
+
+    public enum ELogTag { None, Note, Warning, Error, Exception }
+
     public enum EUlLogFileSeperation { Min, Hour, Day }
 
     public delegate void LoggerMessageHandler(string str);
@@ -29,7 +33,8 @@ namespace Ulee.Utils
         private string ext;
         private Encoding fEncoding;
         private EUlLogFileSeperation fSeperation;
-        private List<string> headList;
+        private ELogTime timeType;
+        private List<string> tags;
 
         public bool Active 
         {
@@ -62,37 +67,61 @@ namespace Ulee.Utils
         public EUlLogFileSeperation FSeperation 
         { get { return fSeperation; } set { fSeperation = value; } }
 
+        public ELogTime TimeType
+        {
+            get { return timeType; }
+            set { timeType = value; }
+        }
+
         public event LoggerMessageHandler LoggerMessage = null;
         protected void OnLoggerMessage(string str)
         {
             LoggerMessage?.Invoke(str);
         }
 
-        public string this[int index]
+        public string this[int tag]
         {
-            set { Log(index, value); }
+            set { Log(tag, value); }
         }
 
-        public string this[string head]
+        public string this[ELogTag tag]
         {
-            set { Log(head, value); }
+            set { Log((int)tag, value); }
+        }
+
+        public string this[string tag]
+        {
+            set { Log(tag, value); }
         }
 
         //----------------------------------------------------------------------
         public UlLogger()
         {
             active = true;
+            timeType = ELogTime.Millisecond;
             path = Directory.GetCurrentDirectory();
             fName = "Log";
             ext = "txt";
             fEncoding = Encoding.Default;
             fSeperation = EUlLogFileSeperation.Day;
-            headList = new List<string>();
+
+            tags = new List<string>();
+            tags.Add("");
+            tags.Add("NOTE");
+            tags.Add("WARNING");
+            tags.Add("ERROR");
+            tags.Add("EXCEPTION");
         }
 
         //----------------------------------------------------------------------
         ~UlLogger()
         {
+        }
+
+        //----------------------------------------------------------------------
+        public void Clear()
+        {
+            tags.Clear();
         }
 
         //----------------------------------------------------------------------
@@ -119,15 +148,9 @@ namespace Ulee.Utils
         }
 
         //----------------------------------------------------------------------
-        public void AddHead(string aStr)
+        public void AddTag(string aStr)
         {
-            headList.Add(aStr);
-        }
-
-        //----------------------------------------------------------------------
-        public void LogRawString(string aStr)
-        {
-            Log("", aStr);
+            tags.Add(aStr);
         }
 
         //----------------------------------------------------------------------
@@ -138,10 +161,10 @@ namespace Ulee.Utils
         }
 
         //----------------------------------------------------------------------
-        public void Log(int aHead, string fmt, params object[] args)
+        public void Log(int aTag, string fmt, params object[] args)
         {
             string sStr = string.Format(fmt, args);
-            Log(aHead, sStr);
+            Log(aTag, sStr);
         }
 
         //----------------------------------------------------------------------
@@ -151,20 +174,20 @@ namespace Ulee.Utils
         }
 
         //----------------------------------------------------------------------
-        public void Log(int aHead, string aStr)
+        public void Log(int aTag, string aStr)
         {
-            if (aHead >= headList.Count)
+            if (aTag >= tags.Count)
             {
-                throw new Exception("Occurred ref of header list index error - UlLogger.Log");
+                throw new Exception("Occurred ref of Tager list index error - UlLogger.Log");
             }
 
-            Log(headList[aHead], aStr);
+            Log(tags[aTag], aStr);
         }
 
         //----------------------------------------------------------------------
-        public void Log(string aHead, string aStr)
+        public void Log(string aTag, string aStr)
         {
-            string sStr;
+            string sStr = "";
 
             if (active == false) return;
 			
@@ -174,33 +197,36 @@ namespace Ulee.Utils
 
                 try
                 {
-                    string head = aHead.Trim().ToUpper();
-
                     theStream = new StreamWriter(GetFName(), true, fEncoding);
 
-                    switch (head)
+                    switch (timeType)
                     {
-                        case "":
-                            sStr = string.Format("{0} {1}",
-                                DateTime.Now.ToString("HH:mm:ss.fff"), aStr).Trim();
+                        case ELogTime.Second:
+                            sStr = $"{DateTime.Now.ToString("HH:mm:ss ")}";
                             break;
 
-                        case "TIMELESS":
-                            sStr = aStr;
+                        case ELogTime.Millisecond:
+                            sStr = $"{DateTime.Now.ToString("HH:mm:ss.fff ")}";
+                            break;
+                    }
+
+                    switch (aTag)
+                    {
+                        case "":
+                            sStr += aStr.Trim();
                             break;
 
                         default:
-                            sStr = string.Format("{0} [{1}] {2}",
-                                DateTime.Now.ToString("HH:mm:ss.fff"), aHead, aStr).Trim();
+                            sStr += $"[{aTag}] {aStr.Trim()}";
                             break;
                     }
 
 					theStream.WriteLine(sStr);
                     OnLoggerMessage(sStr);
                 }
-                catch
+                catch (Exception e)
 				{
-					throw new Exception("Occurred file stream writing exception - UlLogger.Log");
+					throw new Exception($"{e.ToString()} - UlLogger.Log");
 				}
 				finally
 				{

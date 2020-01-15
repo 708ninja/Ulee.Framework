@@ -153,12 +153,14 @@ namespace Ulee.Device.Connection.Temi
             logger.Active = true;
             logger.Path = "";
             logger.FName = "Temi2500Log";
-            logger.AddHead("CONNECT");
-            logger.AddHead("DISCONNECT");
-            logger.AddHead("PC->PLC");
-            logger.AddHead("PC<-PLC");
-            logger.AddHead("COMMENT");
-            logger.AddHead("EXCEPTION");
+
+            logger.Clear();
+            logger.AddTag("CONNECT");
+            logger.AddTag("DISCONNECT");
+            logger.AddTag("PC->PLC");
+            logger.AddTag("PC<-PLC");
+            logger.AddTag("COMMENT");
+            logger.AddTag("EXCEPTION");
 
             connected = false;
             client = new TcpClient();
