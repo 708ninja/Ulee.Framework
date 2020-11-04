@@ -145,6 +145,7 @@
     <Compile Include="Source\Controls\UserControlKor.Designer.cs">
       <DependentUpon>UserControlKor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\Database\SqlServer.cs" />
     <Compile Include="Source\Device\Ajin\AxtAxisObject.cs" />
     <Compile Include="Source\Device\Ajin\AxtDevice.cs" />
     <Compile Include="Source\Device\Ajin\Base\AXA.cs" />
